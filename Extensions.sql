@@ -283,7 +283,12 @@ INSERT INTO filmcast (filmid, peopleid) VALUES
 (10, 16);
 
 --Example: Show cast for specific movie (by ID from films table)
-SELECT people.name AS name FROM films
-LEFT JOIN filmcast ON filmcast.filmid = films.id
-LEFT JOIN people ON filmcast.peopleid = people.id
-WHERE films.id = 1;
+SELECT people.name AS name FROM people
+LEFT JOIN filmcast ON filmcast.peopleid = people.id
+WHERE filmcast.filmid = 1;
+
+--Example: Show case for a movie by movie name
+SELECT people.name AS name FROM people
+LEFT JOIN filmcast ON filmcast.peopleid = people.id
+LEFT JOIN films ON filmcast.filmid = films.id
+WHERE films.title LIKE '%Star Wars%';
